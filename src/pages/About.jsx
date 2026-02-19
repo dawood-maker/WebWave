@@ -1,7 +1,16 @@
-const About = () => {
-    return(
-        <h1>About</h1>
-    )
-}
+import AboutFeatures from "../components/About/AboutFeatures";
+import AboutHeader from "../components/About/AboutHeader";
+import Mission from "../components/About/Mission";
 
-export default About
+
+const About = () => {
+  return (
+    <>
+    <AboutHeader />
+    <AboutFeatures />
+    <Mission />
+    </>
+  );
+};
+
+export default About;
