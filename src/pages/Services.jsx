@@ -1,28 +1,46 @@
 import React from "react";
 import background from "../assets/background.png";
+import { FaLaptopCode, FaShoppingCart, FaSearch, FaCode } from "react-icons/fa";
 
 import ServiceCard from "../components/Services/ServiceCard";
 import StatsCard from "../components/Services/StatsCard";
 import SectionHeader from "../components/Services/SectionHeader";
+import { Link } from "react-router-dom";
 
 const Services = () => {
-  // Services Data
+  // Services Data with link support
   const services = [
     {
       title: "Web Design",
       desc: "Modern, Responsive & High-Performance Websites",
+      icon: (
+        <FaLaptopCode className="text-5xl text-blue-400 mb-4  hover:rotate-12 transition-all duration-300 shadow-lg shadow-blue-500/50" />
+      ),
+      link: "/web-design",
     },
     {
       title: "E-Commerce",
       desc: "Complete Online Store & Payment Integration",
+      icon: (
+        <FaShoppingCart className="text-5xl text-purple-400 mb-4 animate-pulse hover:rotate-12 transition-all duration-300 shadow-lg shadow-purple-500/50" />
+      ),
+      link: "/e-commerce",
     },
     {
       title: "SEO Optimization",
       desc: "Rank Higher & Get More Organic Traffic",
+      icon: (
+        <FaSearch className="text-5xl text-pink-400 mb-4 hover:rotate-12 transition-transform duration-300 shadow-lg shadow-pink-500/50" />
+      ),
+      link: "/seo-optimization",
     },
     {
       title: "Custom Development",
       desc: "Tailored Web Apps & Scalable Solutions",
+      icon: (
+        <FaCode className="text-5xl text-green-400 mb-4 hover:rotate-12 transition-transform duration-300 shadow-lg shadow-green-500/50" />
+      ),
+      link: "/custom-development",
     },
   ];
 
@@ -58,6 +76,8 @@ const Services = () => {
               key={index}
               title={service.title}
               desc={service.desc}
+              icon={service.icon}
+              link={service.link} // Keep link support
             />
           ))}
         </div>
@@ -68,9 +88,13 @@ const Services = () => {
             Transform your online presence with our expert digital solutions.
           </p>
 
-          <button className="bg-gradient-to-r from-pink-500 to-purple-600 px-10 py-4 rounded-full text-lg font-semibold hover:scale-110 transition duration-300 shadow-xl">
-            Get Started
-          </button>
+            <Link
+              to="/get-started"
+              onClick={() => console.log("Get Started Clicked ✅")}
+              className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/50 text-center"
+            >
+              Get Started
+            </Link>
         </div>
 
         {/* Stats */}
