@@ -6,7 +6,6 @@ import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import GetStarted from "./pages/GetStarted";
 import Home from "./pages/home";
-import Footer from "./components/Footer";
 import LearnMore from "./pages/LearnMore";
 
 
@@ -23,7 +22,7 @@ function App() {
         <Route path="/get-started" element={<GetStarted />} />
         <Route path="/learn-more" element={<LearnMore />} />
       </Routes>
-      <Footer />
+      
     </div>
   );
 }
