@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import background from "../assets/background.png";
 import { FaLaptopCode, FaShoppingCart, FaSearch, FaCode } from "react-icons/fa";
 
@@ -8,13 +8,15 @@ import SectionHeader from "../components/Services/SectionHeader";
 import { Link } from "react-router-dom";
 
 const Services = () => {
+  console.log("✅ Services Component Rendered");
+
   // Services Data with link support
   const services = [
     {
       title: "Web Design",
       desc: "Modern, Responsive & High-Performance Websites",
       icon: (
-        <FaLaptopCode className="text-5xl text-blue-400 mb-4  hover:rotate-12 transition-all duration-300 shadow-lg shadow-blue-500/50" />
+        <FaLaptopCode className="text-5xl text-blue-400 mb-4 hover:rotate-12 transition-all duration-300 shadow-lg shadow-blue-500/50" />
       ),
       link: "/web-design",
     },
@@ -44,13 +46,19 @@ const Services = () => {
     },
   ];
 
-  // Stats Data
   const stats = [
     { num: "300+", label: "Happy Clients" },
     { num: "1,500+", label: "Projects Completed" },
     { num: "95%", label: "Client Satisfaction" },
     { num: "5★", label: "Customer Reviews" },
   ];
+
+  // Log once on mount
+  useEffect(() => {
+    console.log("🚀 Services Component Mounted");
+    console.log("📦 Services Data:", services);
+    console.log("📊 Stats Data:", stats);
+  }, []);
 
   return (
     <section
@@ -71,15 +79,18 @@ const Services = () => {
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 gap-10">
-          {services.map((service, index) => (
-            <ServiceCard
-              key={index}
-              title={service.title}
-              desc={service.desc}
-              icon={service.icon}
-              link={service.link} // Keep link support
-            />
-          ))}
+          {services.map((service, index) => {
+            console.log(`🛠 Rendering Service: ${service.title}`);
+            return (
+              <ServiceCard
+                key={index}
+                title={service.title}
+                desc={service.desc}
+                icon={service.icon}
+                link={service.link}
+              />
+            );
+          })}
         </div>
 
         {/* CTA */}
@@ -88,20 +99,21 @@ const Services = () => {
             Transform your online presence with our expert digital solutions.
           </p>
 
-            <Link
-              to="/get-started"
-              onClick={() => console.log("Get Started Clicked ✅")}
-              className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/50 text-center"
-            >
-              Get Started
-            </Link>
+          <Link
+            to="/get-started"
+            onClick={() => console.log("🔥 Get Started Button Clicked")}
+            className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/50 text-center"
+          >
+            Get Started
+          </Link>
         </div>
 
         {/* Stats */}
         <div className="grid md:grid-cols-4 gap-10 mt-24 text-center">
-          {stats.map((stat, index) => (
-            <StatsCard key={index} num={stat.num} label={stat.label} />
-          ))}
+          {stats.map((stat, index) => {
+            console.log(`📈 Rendering Stat: ${stat.label}`);
+            return <StatsCard key={index} num={stat.num} label={stat.label} />;
+          })}
         </div>
       </div>
     </section>
