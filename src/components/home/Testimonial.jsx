@@ -4,9 +4,21 @@ import male from "../../assets/male.png";
 import female from "../../assets/female.png";
 
 function Testimonial() {
+  // ✅ Component mount log
   useEffect(() => {
-    console.log("Testimonial component loaded!");
+    console.log("📝 Testimonial component loaded!");
+    return () => console.log("🛑 Testimonial component unmounted");
   }, []);
+
+  // ✅ Image load handler
+  const handleImageLoad = (name) => {
+    console.log(`💻 Image loaded for ${name}`);
+  };
+
+  // ✅ Hover handler for cards
+  const handleCardHover = (name) => {
+    console.log(`✨ Hovered on testimonial of ${name}`);
+  };
 
   return (
     <section
@@ -25,10 +37,14 @@ function Testimonial() {
         {/* Testimonial Cards */}
         <div className="flex flex-col md:flex-row items-stretch justify-center gap-10 max-w-6xl mx-auto px-4 overflow-hidden">
           {/* Card 1 */}
-          <div className="bg-white bg-opacity-95 p-8 rounded-3xl shadow-2xl flex-1 border-t-4 border-blue-400">
+          <div
+            className="bg-white bg-opacity-95 p-8 rounded-3xl shadow-2xl flex-1 border-t-4 border-blue-400 transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+            onMouseEnter={() => handleCardHover("Ahmed R.")}
+          >
             <img
               src={male}
               alt="Ahmed R."
+              onLoad={() => handleImageLoad("Ahmed R.")}
               className="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-blue-500 shadow-lg transform transition duration-500 hover:scale-110 hover:shadow-2xl"
             />
             <p className="text-gray-700 mb-4 text-lg md:text-base leading-relaxed">
@@ -42,10 +58,14 @@ function Testimonial() {
           </div>
 
           {/* Card 2 */}
-          <div className="bg-white bg-opacity-95 p-8 rounded-3xl shadow-2xl flex-1 border-t-4 border-purple-400">
+          <div
+            className="bg-white bg-opacity-95 p-8 rounded-3xl shadow-2xl flex-1 border-t-4 border-purple-400 transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+            onMouseEnter={() => handleCardHover("Sara K.")}
+          >
             <img
               src={female}
               alt="Sara K."
+              onLoad={() => handleImageLoad("Sara K.")}
               className="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-purple-500 shadow-lg transform transition duration-500 hover:scale-110 hover:shadow-2xl"
             />
             <p className="text-gray-700 mb-4 text-lg md:text-base leading-relaxed">

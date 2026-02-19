@@ -11,18 +11,23 @@ const services = [
 ];
 
 const Painer = () => {
+  // ✅ Component mount log
   useEffect(() => {
     console.log("🔥 Services Section Loaded");
+    return () => console.log("🛑 Services Section Unmounted");
   }, []);
+
+  // ✅ Image load handler
+  const handleImageLoad = (title) => {
+    console.log(`💻 Image Loaded for ${title}`);
+  };
 
   return (
     <section className="relative py-16 md:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-
       {/* Glow Background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-cyan-500/20 blur-[150px] rounded-full animate-pulse"></div>
 
       <div className="relative max-w-7xl mx-auto px-6 text-center">
-
         {/* Badge */}
         <span className="inline-block px-5 md:px-6 py-2 mb-6 text-sm md:text-base font-semibold tracking-widest uppercase bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full shadow-lg animate-pulse">
           Our Services
@@ -35,7 +40,6 @@ const Painer = () => {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -52,6 +56,7 @@ const Painer = () => {
                 <img
                   src={service.img}
                   alt={service.title}
+                  onLoad={() => handleImageLoad(service.title)}
                   className="w-12 md:w-16 h-12 md:h-16 object-contain mix-blend-multiply"
                 />
               </div>
@@ -62,7 +67,9 @@ const Painer = () => {
               </h3>
 
               {/* Description */}
-              <p className="text-gray-400 text-sm md:text-base">{service.desc}</p>
+              <p className="text-gray-400 text-sm md:text-base">
+                {service.desc}
+              </p>
 
               {/* Animated Border Glow */}
               <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-cyan-500/40 transition-all duration-500 pointer-events-none"></div>
@@ -71,7 +78,6 @@ const Painer = () => {
               <div className="absolute -top-10 -left-10 w-32 md:w-40 h-32 md:h-40 bg-gradient-to-tr from-cyan-400/30 to-blue-500/30 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
             </motion.div>
           ))}
-
         </div>
       </div>
     </section>

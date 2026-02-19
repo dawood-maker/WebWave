@@ -4,15 +4,26 @@ import Wabwave from "../../assets/Wabwave.png";
 import background from "../../assets/background.png";
 
 const Header = () => {
-  // ✅ Component Mount Console
+  console.log("Header component rendered"); // ✅ Logs every render
+
+  // ✅ Component Mount / Unmount Console
   useEffect(() => {
-    console.log("Header Component Loaded Successfully 🚀");
+    console.log("Header Component Mounted 🚀");
+    return () => console.log("Header Component Unmounted ❌");
   }, []);
 
-  // ✅ Button Click Handler
+  // ✅ Button Click Handlers
   const handleLearnMore = () => {
     console.log("Learn More Button Clicked 🔥");
   };
+
+  const handleGetStarted = () => {
+    console.log("Get Started Button Clicked ✅");
+  };
+
+  // ✅ Image Load Events
+  const handleBackgroundLoad = () => console.log("Background Image Loaded 🌄");
+  const handleLogoLoad = () => console.log("WebWave Logo Loaded 🌟");
 
   return (
     <section className="relative min-h-screen flex items-center px-4 sm:px-6 overflow-hidden">
@@ -20,6 +31,7 @@ const Header = () => {
       <img
         src={background}
         alt="background"
+        onLoad={handleBackgroundLoad}
         className="absolute inset-0 w-full h-full object-cover -z-10"
       />
 
@@ -44,7 +56,7 @@ const Header = () => {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Link
               to="/get-started"
-              onClick={() => console.log("Get Started Clicked ✅")}
+              onClick={handleGetStarted}
               className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/50 text-center"
             >
               Get Started
@@ -66,6 +78,7 @@ const Header = () => {
           <img
             src={Wabwave}
             alt="WebWave"
+            onLoad={handleLogoLoad}
             className="w-64 sm:w-80 md:w-[400px] lg:w-[500px] xl:w-[550px] drop-shadow-[0_20px_40px_rgba(0,0,0,0.7)]"
           />
         </div>

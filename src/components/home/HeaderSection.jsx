@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import computer from "../../assets/computer.png";
 import background from "../../assets/background.png";
 
 function HeaderSection() {
+  // ✅ Log every render
+  console.log("HeaderSection component rendered");
+
+  // ✅ Log component mount/unmount
+  useEffect(() => {
+    console.log("HeaderSection Mounted 🚀");
+    return () => console.log("HeaderSection Unmounted ❌");
+  }, []);
+
+  // ✅ Button click handler
+  const handleStartProject = () => {
+    console.log("Start Your Project Button Clicked 🎯");
+  };
+
+  // ✅ Image load handler
+  const handleImageLoad = () => {
+    console.log("Computer Image Loaded 💻");
+  };
+
   return (
     <section
       className="relative bg-cover bg-center bg-fixed py-20 md:py-32"
@@ -22,16 +41,22 @@ function HeaderSection() {
           </p>
           <ul className="mb-8 space-y-3 text-left max-w-md mx-auto md:mx-0">
             <li className="flex items-center gap-2 text-lg md:text-xl">
-              <span className="text-green-400 text-2xl">✅</span> Drag & Drop Builder
+              <span className="text-green-400 text-2xl">✅</span> Drag & Drop
+              Builder
             </li>
             <li className="flex items-center gap-2 text-lg md:text-xl">
-              <span className="text-green-400 text-2xl">✅</span> No Coding Required
+              <span className="text-green-400 text-2xl">✅</span> No Coding
+              Required
             </li>
             <li className="flex items-center gap-2 text-lg md:text-xl">
-              <span className="text-green-400 text-2xl">✅</span> Fully Customizable
+              <span className="text-green-400 text-2xl">✅</span> Fully
+              Customizable
             </li>
           </ul>
-          <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 transform hover:-translate-y-1 hover:scale-105">
+          <button
+            onClick={handleStartProject}
+            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition duration-300 transform hover:-translate-y-1 hover:scale-105"
+          >
             Start Your Project
           </button>
         </div>
@@ -41,6 +66,7 @@ function HeaderSection() {
           <img
             src={computer}
             alt="Website Builder"
+            onLoad={handleImageLoad}
             className="w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
           />
         </div>

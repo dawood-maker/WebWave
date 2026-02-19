@@ -1,8 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 import background from "../../assets/background.png";
 import { Link } from "react-router-dom";
 
 function Footer() {
+  console.log("Footer component rendered");
+
+  // Optional: log on mount/unmount
+  useEffect(() => {
+    console.log("Footer component mounted");
+    return () => console.log("Footer component unmounted");
+  }, []);
+
+  const socialLinks = [
+    {
+      name: "Facebook",
+      href: "https://www.facebook.com/yourusername",
+      color: "blue",
+      icon: "https://cdn-icons-png.flaticon.com/512/733/733547.png",
+    },
+    {
+      name: "Twitter",
+      href: "https://twitter.com/yourusername",
+      color: "sky",
+      icon: "https://cdn-icons-png.flaticon.com/512/733/733579.png",
+    },
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/yourusername",
+      color: "pink",
+      icon: "https://cdn-icons-png.flaticon.com/512/733/733558.png",
+    },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/yourusername",
+      color: "blue",
+      icon: "https://cdn-icons-png.flaticon.com/512/733/733561.png",
+    },
+  ];
+
+  console.log("Social links:", socialLinks);
+
+  const quickLinks = [
+    { label: "Home", path: "/" },
+    { label: "About", path: "/about" },
+    { label: "Services", path: "/services" },
+    { label: "Contact", path: "/contact" },
+  ];
+
+  console.log("Quick links:", quickLinks);
+
   return (
     <footer
       className="relative bg-cover bg-center text-white pt-24 pb-14"
@@ -34,61 +80,20 @@ function Footer() {
           </h4>
 
           <div className="flex justify-center gap-8">
-            {/* Facebook */}
-            <a
-              href="https://www.facebook.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-blue-600 transition duration-300 transform hover:scale-125 shadow-lg hover:shadow-blue-500/50"
-            >
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
-                alt="Facebook"
-                className="w-6 h-6"
-              />
-            </a>
-
-            {/* Twitter */}
-            <a
-              href="https://twitter.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-sky-500 transition duration-300 transform hover:scale-125 shadow-lg hover:shadow-sky-400/50"
-            >
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
-                alt="Twitter"
-                className="w-6 h-6"
-              />
-            </a>
-
-            {/* Instagram */}
-            <a
-              href="https://www.instagram.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-pink-600 transition duration-300 transform hover:scale-125 shadow-lg hover:shadow-pink-500/50"
-            >
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/733/733558.png"
-                alt="Instagram"
-                className="w-6 h-6"
-              />
-            </a>
-
-            {/* LinkedIn */}
-            <a
-              href="https://www.linkedin.com/in/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-blue-700 transition duration-300 transform hover:scale-125 shadow-lg hover:shadow-blue-600/50"
-            >
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/733/733561.png"
-                alt="LinkedIn"
-                className="w-6 h-6"
-              />
-            </a>
+            {socialLinks.map((s, index) => (
+              <a
+                key={index}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-3 rounded-full bg-white/10 backdrop-blur-md transition duration-300 transform hover:scale-125 shadow-lg`}
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.1)",
+                }}
+              >
+                <img src={s.icon} alt={s.name} className="w-6 h-6" />
+              </a>
+            ))}
           </div>
         </div>
 
@@ -99,41 +104,16 @@ function Footer() {
           </h4>
 
           <ul className="space-y-3">
-            <li>
-              <Link
-                to="/"
-                className="hover:text-green-400 transition duration-300 hover:tracking-wider"
-              >
-                Home
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                to="/about"
-                className="hover:text-green-400 transition duration-300 hover:tracking-wider"
-              >
-                About
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                to="/services"
-                className="hover:text-green-400 transition duration-300 hover:tracking-wider"
-              >
-                Services
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                to="/contact"
-                className="hover:text-green-400 transition duration-300 hover:tracking-wider"
-              >
-                Contact
-              </Link>
-            </li>
+            {quickLinks.map((link, idx) => (
+              <li key={idx}>
+                <Link
+                  to={link.path}
+                  className="hover:text-green-400 transition duration-300 hover:tracking-wider"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
