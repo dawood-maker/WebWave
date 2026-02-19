@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import background from "../../assets/background.png"; // apni image ka path yahan lagao
 
 const Mission = () => {
+  console.log("Mission component rendered");
+
+  useEffect(() => {
+    console.log("Mission component mounted");
+    return () => console.log("Mission component unmounted");
+  }, []);
+
   return (
     <div
       className="relative bg-cover bg-center py-20 text-white"
